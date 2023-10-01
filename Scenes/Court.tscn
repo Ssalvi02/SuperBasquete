@@ -1,0 +1,12 @@
+[gd_scene load_steps=4 format=3 uid="uid://b68ppv3oclr0k"]
+
+[ext_resource type="PackedScene" uid="uid://d2uc8hu33oeec" path="res://Assets/Basketball Court.fbx" id="1_0wawg"]
+[ext_resource type="Texture2D" uid="uid://lj5xq60gdk45" path="res://Assets/Floor_Color.jpg" id="2_wemfk"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cp0jc"]
+albedo_texture = ExtResource("2_wemfk")
+
+[node name="Basketball Court" instance=ExtResource("1_0wawg")]
+
+[node name="Court" parent="RootNode" index="12"]
+material_override = SubResource("StandardMaterial3D_cp0jc")

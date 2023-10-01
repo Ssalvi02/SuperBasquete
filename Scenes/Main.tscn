@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://cjm6j4aulsffa"]
+
+[ext_resource type="PackedScene" uid="uid://b68ppv3oclr0k" path="res://Scenes/Court.tscn" id="1_28ew8"]
+[ext_resource type="PackedScene" uid="uid://b6abuuwdblo44" path="res://Scenes/low_poly_man.fbx" id="2_fx3ul"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Basketball Court" parent="." instance=ExtResource("1_28ew8")]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.819152, 0.573576, 0, -0.573576, 0.819152, 0, 10.005, 27.45)
+
+[node name="low_poly_man" parent="." instance=ExtResource("2_fx3ul")]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 30.8637, 0, 8.16424)
