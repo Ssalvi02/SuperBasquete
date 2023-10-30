@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://2t6xxyk7huoc"]
+
+[ext_resource type="Script" path="res://stamina_bar_3d.gd" id="1_cat6x"]
+[ext_resource type="PackedScene" uid="uid://bfpdito8gxn8j" path="res://Stamina2D.tscn" id="2_183co"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_f85ov"]
+viewport_path = NodePath("SubViewport")
+
+[node name="StaminaBar3D" type="Sprite3D"]
+billboard = 2
+texture = SubResource("ViewportTexture_f85ov")
+script = ExtResource("1_cat6x")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+transparent_bg = true
+mesh_lod_threshold = 0.0
+size = Vector2i(82, 10)
+size_2d_override_stretch = true
+render_target_update_mode = 4
+
+[node name="Control" parent="SubViewport" instance=ExtResource("2_183co")]

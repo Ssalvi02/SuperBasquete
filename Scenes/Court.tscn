@@ -8,5 +8,9 @@ albedo_texture = ExtResource("2_wemfk")
 
 [node name="Basketball Court" instance=ExtResource("1_0wawg")]
 
+[node name="Light" parent="RootNode" index="0"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 25, 0)
+light_energy = 1.0
+
 [node name="Court" parent="RootNode" index="12"]
 material_override = SubResource("StandardMaterial3D_cp0jc")

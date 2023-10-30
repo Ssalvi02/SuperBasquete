@@ -1,0 +1,78 @@
+[gd_scene load_steps=9 format=3 uid="uid://4882i0elqakr"]
+
+[ext_resource type="Script" path="res://Scenes/CharacterBody3D.gd" id="1_h6f86"]
+[ext_resource type="Texture2D" uid="uid://ddemeg7miuqxs" path="res://Assets/Monarch_M2.png" id="2_88bmo"]
+[ext_resource type="PackedScene" uid="uid://2t6xxyk7huoc" path="res://stamina_bar_3d.tscn" id="3_sb8d6"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_6kdax"]
+radius = 2.19817
+height = 9.06517
+
+[sub_resource type="Animation" id="Animation_oaja5"]
+resource_name = "Idle"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_6rcp8"]
+resource_name = "Movement"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4w8uo"]
+_data = {
+"Idle": SubResource("Animation_oaja5"),
+"Movement": SubResource("Animation_6rcp8")
+}
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_iy5td"]
+viewport_path = NodePath("SubViewport")
+
+[node name="CharacterBody3D" type="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.86929, 4.13052)
+script = ExtResource("1_h6f86")
+
+[node name="PlayerSprite" type="Sprite3D" parent="."]
+pixel_size = 0.5
+billboard = 2
+shaded = true
+alpha_cut = 2
+texture_filter = 0
+texture = ExtResource("2_88bmo")
+hframes = 3
+vframes = 4
+
+[node name="Collision" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.55432, 0)
+shape = SubResource("CapsuleShape3D_6kdax")
+
+[node name="Animation" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_4w8uo")
+}
+
+[node name="StaminaBar3D" parent="." instance=ExtResource("3_sb8d6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.53545, 2.26752)
+pixel_size = 0.1
+texture_filter = 0
+texture = SubResource("ViewportTexture_iy5td")
