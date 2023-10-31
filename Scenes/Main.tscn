@@ -1,11 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://cjm6j4aulsffa"]
+[gd_scene load_steps=9 format=3 uid="uid://cjm6j4aulsffa"]
 
-[ext_resource type="PackedScene" uid="uid://b68ppv3oclr0k" path="res://Scenes/Court.tscn" id="1_28ew8"]
+[ext_resource type="Script" path="res://Scenes/GameController.gd" id="1_5ydts"]
 [ext_resource type="PackedScene" uid="uid://4882i0elqakr" path="res://Player.tscn" id="1_82tiw"]
+[ext_resource type="PackedScene" uid="uid://bsbsjmps3kx5r" path="res://court.tscn" id="3_516q1"]
 [ext_resource type="Texture2D" uid="uid://cs05sqi32ow07" path="res://Assets/Epic_GloriousPink_EquiRect.png" id="4_eavja"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_fs4oh"]
-size = Vector3(83.2797, 0.001, 49.3841)
+[ext_resource type="PackedScene" uid="uid://chhksj28gtaij" path="res://Ball.tscn" id="4_p8yyc"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_h5pcj"]
 panorama = ExtResource("4_eavja")
@@ -18,26 +17,26 @@ background_mode = 2
 sky = SubResource("Sky_eyd5m")
 
 [node name="Node3D" type="Node3D"]
-
-[node name="Player" parent="." instance=ExtResource("1_82tiw")]
-
-[node name="Camera3D" type="Camera3D" parent="Player"]
-transform = Transform3D(1, 0, 0, 0, 0.939693, 0.34202, 0, -0.34202, 0.939693, 0, 7, 15)
-
-[node name="StaticBody3D" type="StaticBody3D" parent="."]
-
-[node name="Basketball Court" parent="StaticBody3D" instance=ExtResource("1_28ew8")]
-
-[node name="Floor" type="CollisionShape3D" parent="StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.34963, 0, 0)
-shape = SubResource("BoxShape3D_fs4oh")
+script = ExtResource("1_5ydts")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_66rl2")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.0888943, -0.996041, 0, 0.840052, -0.0749727, 0.5373, -0.535173, 0.0477629, 0.843391, 0, 30, 25)
+transform = Transform3D(-0.0888943, -0.996041, -4.66412e-08, 0.840052, -0.0749727, 0.5373, -0.535173, 0.0477629, 0.843391, 0, 30, 25)
 light_energy = 0.4
 shadow_enabled = true
 shadow_opacity = 0.55
 sky_mode = 1
+
+[node name="Player" parent="." instance=ExtResource("1_82tiw")]
+
+[node name="Camera3D" type="Camera3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 17.1307, 40.8695)
+
+[node name="Court" parent="." instance=ExtResource("3_516q1")]
+
+[node name="Ball" parent="." instance=ExtResource("4_p8yyc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.8724, 10.0126, 9.07139)
+max_contacts_reported = 100
+contact_monitor = true

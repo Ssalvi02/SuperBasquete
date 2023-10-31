@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://4882i0elqakr"]
+[gd_scene load_steps=10 format=3 uid="uid://4882i0elqakr"]
 
 [ext_resource type="Script" path="res://Scenes/CharacterBody3D.gd" id="1_h6f86"]
 [ext_resource type="Texture2D" uid="uid://ddemeg7miuqxs" path="res://Assets/Monarch_M2.png" id="2_88bmo"]
@@ -45,8 +45,12 @@ _data = {
 "Movement": SubResource("Animation_6rcp8")
 }
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_iy5td"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_6i375"]
 viewport_path = NodePath("SubViewport")
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_tvis6"]
+radius = 4.0
+height = 12.0
 
 [node name="CharacterBody3D" type="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.86929, 4.13052)
@@ -72,7 +76,16 @@ libraries = {
 }
 
 [node name="StaminaBar3D" parent="." instance=ExtResource("3_sb8d6")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.53545, 2.26752)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.14901, 2.19893)
 pixel_size = 0.1
+billboard = 1
 texture_filter = 0
-texture = SubResource("ViewportTexture_iy5td")
+texture = SubResource("ViewportTexture_6i375")
+
+[node name="PlayerArea3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerArea3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.61009, 0)
+shape = SubResource("CapsuleShape3D_tvis6")
+
+[connection signal="area_entered" from="PlayerArea3D" to="." method="_on_player_area_3d_area_entered"]

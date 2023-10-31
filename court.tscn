@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://bsbsjmps3kx5r"]
+
+[ext_resource type="PackedScene" uid="uid://b68ppv3oclr0k" path="res://Scenes/Court.tscn" id="1_0um5r"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_21jrd"]
+
+[node name="Court" type="StaticBody3D"]
+transform = Transform3D(1.75, 0, 0, 0, 1.75, 0, 0, 0, 1.75, 0, 0, 0)
+
+[node name="Basketball Court" parent="." instance=ExtResource("1_0um5r")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.17983e-06, 45.3475, -64.0645)
+shape = SubResource("SphereShape3D_21jrd")
