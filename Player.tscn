@@ -45,7 +45,7 @@ _data = {
 "Movement": SubResource("Animation_6rcp8")
 }
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_6i375"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_g0b0w"]
 viewport_path = NodePath("SubViewport")
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_tvis6"]
@@ -80,7 +80,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.14901, 2.19893)
 pixel_size = 0.1
 billboard = 1
 texture_filter = 0
-texture = SubResource("ViewportTexture_6i375")
+texture = SubResource("ViewportTexture_g0b0w")
 
 [node name="PlayerArea3D" type="Area3D" parent="."]
 
