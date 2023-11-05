@@ -1,6 +1,7 @@
-[gd_scene load_steps=11 format=3 uid="uid://b68ppv3oclr0k"]
+[gd_scene load_steps=14 format=3 uid="uid://b68ppv3oclr0k"]
 
 [ext_resource type="PackedScene" uid="uid://d2uc8hu33oeec" path="res://Assets/Basketball Court.fbx" id="1_0wawg"]
+[ext_resource type="ArrayMesh" uid="uid://cq0ixffps82wk" path="res://NetMesh.tres" id="2_u2cuk"]
 [ext_resource type="Texture2D" uid="uid://lj5xq60gdk45" path="res://Assets/Floor_Color.jpg" id="2_wemfk"]
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_ry1is"]
@@ -27,6 +28,13 @@ albedo_texture = ExtResource("2_wemfk")
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_jg6ic"]
 data = PackedVector3Array(0.01, 0.01, 0, -0.01, -0.01, 0, -0.01, 0.01, 0, 0.01, 0.01, 0, 0.01, -0.01, 0, -0.01, -0.01, 0)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_7jnth"]
+size = Vector3(1.00184, 1.1928, 1.49351)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_oj0oc"]
+height = 0.0194243
+radius = 0.875234
+
 [node name="Basketball Court" instance=ExtResource("1_0wawg")]
 
 [node name="Light" parent="RootNode" index="0"]
@@ -51,6 +59,10 @@ shape = SubResource("ConcavePolygonShape3D_woegp")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RootNode/Hoop/StaticBody3D" index="0"]
 shape = SubResource("ConcavePolygonShape3D_yuhai")
 
+[node name="Net" parent="RootNode" index="6"]
+visible = false
+mesh = ExtResource("2_u2cuk")
+
 [node name="StaticBody3D" type="StaticBody3D" parent="RootNode/Board_001" index="0"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RootNode/Board_001/StaticBody3D" index="0"]
@@ -66,10 +78,103 @@ shape = SubResource("ConcavePolygonShape3D_li7i6")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RootNode/Hoop_001/StaticBody3D" index="0"]
 shape = SubResource("ConcavePolygonShape3D_db1q0")
 
-[node name="Court" parent="RootNode" index="12"]
+[node name="Net1" type="SoftBody3D" parent="RootNode" index="11"]
+transform = Transform3D(-87.5642, 3.40988e-05, -2.1526e-12, 0, 5.21923e-06, 75.7379, 3.40988e-05, 87.5642, -9.02866e-06, 34.2052, 9.64866, -0.102044)
+mesh = ExtResource("2_u2cuk")
+skeleton = NodePath("../Net_001")
+linear_stiffness = 1.0
+pinned_points = [1203, 684, 516, 182, 57, 796, 154, 1231, 3763, 768, 3058, 3662, 126, 643, 4142, 587, 3106, 98, 2914, 1, 3292, 42, 3151]
+attachments/0/point_index = 1203
+attachments/0/spatial_attachment_path = NodePath(".")
+attachments/0/offset = Vector3(-0.00597558, 0.00894312, 0.00997589)
+attachments/1/point_index = 684
+attachments/1/spatial_attachment_path = NodePath(".")
+attachments/1/offset = Vector3(-0.00209833, 0.0105491, 0.00997589)
+attachments/2/point_index = 516
+attachments/2/spatial_attachment_path = NodePath(".")
+attachments/2/offset = Vector3(0.00209835, 0.0105491, 0.00997589)
+attachments/3/point_index = 182
+attachments/3/spatial_attachment_path = NodePath(".")
+attachments/3/offset = Vector3(0.0059756, 0.00894311, 0.00997589)
+attachments/4/point_index = 57
+attachments/4/spatial_attachment_path = NodePath(".")
+attachments/4/offset = Vector3(0.00894312, 0.0059756, 0.00997589)
+attachments/5/point_index = 796
+attachments/5/spatial_attachment_path = NodePath(".")
+attachments/5/offset = Vector3(0.0105491, 0.00209835, 0.00997589)
+attachments/6/point_index = 154
+attachments/6/spatial_attachment_path = NodePath(".")
+attachments/6/offset = Vector3(0.0105491, -0.00209835, 0.00997589)
+attachments/7/point_index = 1231
+attachments/7/spatial_attachment_path = NodePath(".")
+attachments/7/offset = Vector3(0.00894312, -0.0059756, 0.00997589)
+attachments/8/point_index = 3763
+attachments/8/spatial_attachment_path = NodePath(".")
+attachments/8/offset = Vector3(0.00757359, -0.00757359, 0.00912951)
+attachments/9/point_index = 768
+attachments/9/spatial_attachment_path = NodePath(".")
+attachments/9/offset = Vector3(0.0059756, -0.00894311, 0.00997589)
+attachments/10/point_index = 3058
+attachments/10/spatial_attachment_path = NodePath(".")
+attachments/10/offset = Vector3(0.0040988, -0.00989537, 0.00912951)
+attachments/11/point_index = 3662
+attachments/11/spatial_attachment_path = NodePath(".")
+attachments/11/offset = Vector3(-2.58719e-09, -0.0107107, 0.00912951)
+attachments/12/point_index = 126
+attachments/12/spatial_attachment_path = NodePath(".")
+attachments/12/offset = Vector3(0.00209835, -0.0105491, 0.00997589)
+attachments/13/point_index = 643
+attachments/13/spatial_attachment_path = NodePath(".")
+attachments/13/offset = Vector3(-0.00209835, -0.0105491, 0.00997589)
+attachments/14/point_index = 4142
+attachments/14/spatial_attachment_path = NodePath(".")
+attachments/14/offset = Vector3(-0.0040988, -0.00989537, 0.00912951)
+attachments/15/point_index = 587
+attachments/15/spatial_attachment_path = NodePath(".")
+attachments/15/offset = Vector3(-0.0059756, -0.00894311, 0.00997589)
+attachments/16/point_index = 3106
+attachments/16/spatial_attachment_path = NodePath(".")
+attachments/16/offset = Vector3(-0.00757359, -0.00757358, 0.00912951)
+attachments/17/point_index = 98
+attachments/17/spatial_attachment_path = NodePath(".")
+attachments/17/offset = Vector3(-0.00894311, -0.00597559, 0.00997589)
+attachments/18/point_index = 2914
+attachments/18/spatial_attachment_path = NodePath(".")
+attachments/18/offset = Vector3(-0.00989537, -0.00409879, 0.00912951)
+attachments/19/point_index = 1
+attachments/19/spatial_attachment_path = NodePath(".")
+attachments/19/offset = Vector3(-0.0105491, -0.00209834, 0.00997589)
+attachments/20/point_index = 3292
+attachments/20/spatial_attachment_path = NodePath(".")
+attachments/20/offset = Vector3(-0.0107107, 1.02162e-08, 0.00912951)
+attachments/21/point_index = 42
+attachments/21/spatial_attachment_path = NodePath(".")
+attachments/21/offset = Vector3(-0.0089431, 0.00597561, 0.00997589)
+attachments/22/point_index = 3151
+attachments/22/spatial_attachment_path = NodePath(".")
+attachments/22/offset = Vector3(-0.00989536, 0.00409881, 0.00912951)
+
+[node name="Net_001" parent="RootNode" index="12"]
+visible = false
+
+[node name="Court" parent="RootNode" index="13"]
 material_override = SubResource("StandardMaterial3D_cp0jc")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="RootNode/Court" index="0"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RootNode/Court/StaticBody3D" index="0"]
 shape = SubResource("ConcavePolygonShape3D_jg6ic")
+
+[node name="RagdollArea" type="Area3D" parent="RootNode" index="14"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34.2807, 11.4523, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RootNode/RagdollArea" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2, -0.535, 0)
+shape = SubResource("BoxShape3D_7jnth")
+
+[node name="PointArea" type="Area3D" parent="RootNode" index="15"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34.2807, 11.4523, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RootNode/PointArea" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.101273, -1.07359, -0.122705)
+shape = SubResource("CylinderShape3D_oj0oc")

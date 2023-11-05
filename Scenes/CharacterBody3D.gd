@@ -13,6 +13,7 @@ extends CharacterBody3D
 @export var shoot_timing = 0
 var is_with_ball = false
 signal shot_ball
+var is_in_3p = true
 
 @export var facing = 0
 @export var frame = 0
@@ -24,7 +25,7 @@ var ball_instance = ball.instantiate()
 
 
 func _ready():
-	$Animation.play("Movement")
+	$Animation.play("Idle")
 	
 	current_stamina = base_stamina
 	stamina_bar.max_value = base_stamina
@@ -37,6 +38,7 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 func _physics_process(delta):
 	current_stamina = clamp(current_stamina, 0, base_stamina)
 	gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
+	print(velocity)
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y -= gravity * delta
@@ -48,21 +50,21 @@ func _physics_process(delta):
 	# Shooting
 	if Input.is_action_pressed("shoot") and is_with_ball:
 		shoot_timing += delta
-		if shoot_timing > 1.1:
-			shoot_timing = 0
+		if shoot_timing > 1.2:
 			is_with_ball = false
-			shot_ball.emit()
+			emit_signal("shot_ball", shoot_timing)
+			shoot_timing = 0
 			remove_child(ball_instance)
 			
 		
 	if Input.is_action_just_released("shoot") and is_with_ball:
-		shoot_timing = 0
 		#Spawn da bola
 		is_with_ball = false
-		shot_ball.emit()
+		emit_signal("shot_ball", shoot_timing)
+		shoot_timing = 0
 		remove_child(ball_instance)
 
-	if shoot_timing >= 0.55 and shoot_timing <= 0.65:
+	if shoot_timing >= 0.55 and shoot_timing <= 0.60:
 		$PlayerSprite.modulate = Color.CHARTREUSE
 	else:
 		$PlayerSprite.modulate = Color.WHITE
@@ -93,19 +95,19 @@ func _physics_process(delta):
 	
 	# Call animation helpers
 	update_facing(input_dir)
-	if velocity != Vector3(0, 0, 0):
-		$Animation.play("Movement")
-
-	update_animation_row()
+	
+	if velocity == Vector3(0, 0, 0):
+		$Animation.play("Idle")
+	if velocity.x > 0:
+		$PlayerSprite.flip_h = false
+		$Animation.play("MovementHoriz")
+	if velocity.x < 0:
+		$PlayerSprite.flip_h = true
+		$Animation.play("MovementHoriz")
 	
 	move_and_slide()
 	
 	
-func update_animation():
-	$PlayerSprite.frame = animation_column * 8 + facing
-
-func update_animation_row():
-	$PlayerSprite.frame = animation_column + facing 
 
 
 func update_facing(input_dir):
@@ -124,9 +126,19 @@ func update_facing(input_dir):
 
 
 func _on_player_area_3d_area_entered(area):
+	print(area.name)
 	if area.name == "BallArea3D":
 		is_with_ball = true
 		ball_instance.get_child(2).set_monitorable(false)
 		ball_instance.get_child(2).set_monitoring(false)
-		ball_instance.position = Vector3(2,0,2)
+		ball_instance.position = Vector3(4, 0, 4)
 		add_child(ball_instance)
+	if area.name == "ThreePointerArea":
+		is_in_3p = false
+
+
+
+
+func _on_player_area_3d_area_exited(area):
+	if area.name == "ThreePointerArea":
+		is_in_3p = true
