@@ -1,0 +1,122 @@
+[gd_scene load_steps=6 format=3 uid="uid://dpy87h7qvnwx5"]
+
+[ext_resource type="Script" path="res://Scenes/controls.gd" id="1_6gyby"]
+[ext_resource type="Texture2D" uid="uid://bvt66pjfas68b" path="res://Assets/teste.jpg" id="1_55541"]
+
+[sub_resource type="SystemFont" id="SystemFont_lnygv"]
+font_names = PackedStringArray("Impact")
+oversampling = 10.0
+
+[sub_resource type="SystemFont" id="SystemFont_hccr7"]
+font_names = PackedStringArray("Impact")
+oversampling = 10.0
+
+[sub_resource type="SystemFont" id="SystemFont_gmccl"]
+font_names = PackedStringArray("Impact")
+subpixel_positioning = 0
+oversampling = 10.0
+
+[node name="Controls" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_6gyby")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_55541")
+expand_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="Separator" type="Control" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/outline_size = 2
+theme_override_constants/shadow_outline_size = 1
+theme_override_fonts/font = SubResource("SystemFont_lnygv")
+theme_override_font_sizes/font_size = 18
+text = "CONTROLES"
+horizontal_alignment = 1
+
+[node name="Separator2" type="Control" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = SubResource("SystemFont_hccr7")
+theme_override_font_sizes/font_size = 18
+text = "WASD / Analógico - Movimentação"
+horizontal_alignment = 1
+
+[node name="Label3" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = SubResource("SystemFont_hccr7")
+theme_override_font_sizes/font_size = 18
+text = "J (Teclado) / A (Joystick) - Passe"
+horizontal_alignment = 1
+
+[node name="Label4" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = SubResource("SystemFont_hccr7")
+theme_override_font_sizes/font_size = 18
+text = "K (Teclado) / Y (Joystick) - Bloqueio"
+horizontal_alignment = 1
+
+[node name="Label5" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = SubResource("SystemFont_hccr7")
+theme_override_font_sizes/font_size = 18
+text = "Barra de espaço (Teclado) / X (Joystick) - Arremesso"
+horizontal_alignment = 1
+
+[node name="Label6" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = SubResource("SystemFont_hccr7")
+theme_override_font_sizes/font_size = 18
+text = "Barra de espaço (Teclado) / X (Joystick) - Roubo de bola"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 4
+alignment = 2
+
+[node name="ReturnButton" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(120, 10)
+layout_mode = 2
+theme_override_fonts/font = SubResource("SystemFont_gmccl")
+theme_override_font_sizes/font_size = 12
+text = "Voltar"
