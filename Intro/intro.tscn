@@ -1,0 +1,94 @@
+[gd_scene load_steps=6 format=3 uid="uid://ervbukwg5x3u"]
+
+[ext_resource type="Script" path="res://Intro/intro.gd" id="1_02lh4"]
+[ext_resource type="Texture2D" uid="uid://dg5ipr7bmj1po" path="res://Assets/logo_gamepad_80x80.png" id="1_afv5h"]
+
+[sub_resource type="Animation" id="Animation_ha6vr"]
+resource_name = "logo"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 0, 1, 2, 3, 4]
+}
+
+[sub_resource type="Animation" id="Animation_8wekt"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_m5j85"]
+_data = {
+"RESET": SubResource("Animation_8wekt"),
+"logo": SubResource("Animation_ha6vr")
+}
+
+[node name="Intro" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_02lh4")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.145098, 0.145098, 0.145098, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 63
+
+[node name="Separator" type="Control" parent="ColorRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ColorRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 11
+text = "Feito na"
+horizontal_alignment = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="ColorRect/MarginContainer/VBoxContainer"]
+position = Vector2(229, 119)
+texture = ExtResource("1_afv5h")
+hframes = 5
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ColorRect/MarginContainer/VBoxContainer/Sprite2D"]
+libraries = {
+"": SubResource("AnimationLibrary_m5j85")
+}
